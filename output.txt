@@ -7,9 +7,6 @@ restaurant and more foo -15.89
 Transfer to Clothing    -50.00
 Total: 923.96
 
-
-Example of the chart output:
-
 Percentage spent by category
 100|          
  90|          
