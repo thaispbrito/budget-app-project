@@ -27,4 +27,4 @@ Percentage spent by category
         h     
         i     
         n     
-        g           
+        g    
