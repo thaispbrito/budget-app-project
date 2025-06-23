@@ -54,6 +54,7 @@ class Category:
             return True
         else:
             return False
+
     # Check funds using the self.get_balance method created above
     def check_funds(self, amount):  # This method should be used by both the withdraw and transfer methods
         balance = self.get_balance()
@@ -61,7 +62,8 @@ class Category:
             return False
         else:
             return True        
-        
+
+# Generate a text-based spending chart         
 def create_spend_chart(categories):
     # Create a list to store the output lines for the chart
     output_lines = []
