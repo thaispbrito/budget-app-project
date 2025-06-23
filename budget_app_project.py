@@ -1,6 +1,21 @@
 import math
 
 class Category:
+    """
+    Represents a budget category for tracking deposits, withdrawals, and transfers.
+
+    Attributes:
+        category_type (str): The name of the budget category.
+        ledger (list): A list of dictionaries recording deposits and withdrawals.
+
+    Methods:
+        deposit(amount, description=""): Adds a deposit to the ledger.
+        withdraw(amount, description=""): Attempts to withdraw funds if sufficient balance exists.
+        get_balance(): Returns the current balance of the category.
+        transfer(amount, other_category): Transfers funds to another Category if sufficient balance exists.
+        check_funds(amount): Checks if the requested amount is available in the balance.
+    """
+    
     # Initialize the properties to the new object self to the passed in value
     def __init__(self, category_type):
         self.category_type = category_type
@@ -62,8 +77,23 @@ class Category:
         else:
             return True        
 
-# Generate a text-based spending chart based on the withdrawals        
+       
 def create_spend_chart(categories):
+    
+    """
+    Generates a text-based bar chart representing the percentage of total withdrawals by category.
+
+    Args:
+        categories (list of Category): A list of Category objects to include in the chart.
+
+    Returns:
+        str: A formatted string that visually displays the percentage spent by category
+        as a vertical bar chart with category names labeled below.
+
+    The chart shows percentages in increments of 10% from 0% to 100%, with 'o' characters
+    marking the spending levels for each category.
+    """
+    
     # Create a list to store the output lines for the chart
     output_lines = []
     # Store the chart title
