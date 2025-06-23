@@ -12,4 +12,4 @@ It allows users to create budget categories, track spending, and visualize spend
 ### Project Structure
 - `budget.py`: Main Python module containing the Category class and logic
 - `README.md`: Project documentation
-- `output.txt`: (Optional) Sample output of the spending chart
+- `output.txt`: Sample output based on the unit testing inlcuded in the code
