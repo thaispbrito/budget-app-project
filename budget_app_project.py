@@ -12,15 +12,14 @@ class Category:
     def __str__(self):
         output = []
 
-        # Append the heading to the list just created
+        # Create a title line of 30 characters where the name of the category is centered in a line of * characters
         output.append((f"{self.category_type}").center(30, "*"))
         total = 0 
 
         for item in self.ledger:
-            # Append the pair description-amount to the output list
             # Make sure the first 23 characters of the description will be displayed
             # Slice the first 23 characters, in case the description is too long
-            # Right-align the amount with two decimal places and ispaly a max of 7 characters
+            # Right-align the amount with two decimal places and display a max of seven characters
             output.append(f"{item['description'][:23]:<23}{item['amount']:>7.2f}")
             total += item['amount']
 
@@ -55,7 +54,7 @@ class Category:
         else:
             return False
 
-    # Check funds using the self.get_balance method created above
+    # Check funds using the get_balance method created above
     def check_funds(self, amount):  # This method should be used by both the withdraw and transfer methods
         balance = self.get_balance()
         if amount > balance:
@@ -63,7 +62,7 @@ class Category:
         else:
             return True        
 
-# Generate a text-based spending chart         
+# Generate a text-based spending chart based on the withdrawals        
 def create_spend_chart(categories):
     # Create a list to store the output lines for the chart
     output_lines = []
@@ -96,7 +95,7 @@ def create_spend_chart(categories):
     # Format the percentage spent by category
     # Set the labels 0 - 100 down the left side of the chart 
     for percentage in range(100, -1, -10):
-        lines = f"{percentage:>3}| "  # Right-align the value with 3 characters wide
+        lines = f"{percentage:>3}| "  # Right-align the value, three characters wide
         line_spaces = []  # Create this list as a helper for adding some extra spaces
 
         # Make the 'bars' in the bar chart out of the 'o' character
@@ -106,12 +105,13 @@ def create_spend_chart(categories):
             else:
                 line_spaces.append(" ")
 
-        lines += (" "*2).join(line_spaces) + (" "*2)  
+        lines += (" "*2).join(line_spaces) + (" "*2)
+        
         # Set the chart width for consistent horizontal alignment     
         chart_width = 5 + len(spent_by_category) * 3
         output_lines.append(lines.ljust(chart_width))  # Use .ljust() to left-justify, padding it with spaces
 
-    # Each category column takes up 3 characters (one space + 'o' + another space)
+    # Each category column takes up three characters (one space + 'o' + another space)
     # +1 for extra "-" to make the horizontal line below the bars with two spaces past the final bar
     output_lines.append((" "*4) + "-" * (len(spent_by_category) * 3 + 1))
             
