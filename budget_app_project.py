@@ -76,7 +76,6 @@ class Category:
             return False
         else:
             return True        
-
        
 def create_spend_chart(categories):
     
