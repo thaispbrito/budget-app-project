@@ -134,7 +134,7 @@ def create_spend_chart(categories):
         chart_width = 5 + len(spent_by_category) * 3
         output_lines.append(lines.ljust(chart_width))  # Left-justify, padding it with spaces
 
-    # Add the horizontal line below the bars
+    # Add the horizontal line below the bars to the output_lines list
     # Each category column takes up three characters (one space + 'o' + another space)
     # +1 for extra '-' to make the horizontal line below the bars with two spaces past the final bar
     output_lines.append((' '*4) + '-' * (len(spent_by_category) * 3 + 1))
@@ -183,6 +183,7 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
+
 
 
 
