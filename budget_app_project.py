@@ -71,7 +71,7 @@ class Category:
             return True
         return False
 
-    # Check funds using the get_balance method created above
+    # Check funds using the get_balance method defined previously
     def check_funds(self, amount):  # This method is used by both the withdraw and transfer methods
         return amount <= self.get_balance()
        
@@ -182,6 +182,7 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
+
 
 
 
