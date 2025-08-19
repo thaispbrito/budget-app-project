@@ -23,15 +23,17 @@ class Category:
         # Initialize a list that can be accessed by all methods in this class
         self.ledger = []
 
-    # Define __str__ method in order to print the output properly
+    # Define __str__ method to print the output properly
     def __str__(self):
-        output = []
+        output = []  # Create a list to store the output elements
 
         # Create a title line of 30 characters where the name of 
-        # the category is centered in a line of '*' characters
+        # the category is centered in a line of '*' characters,
+        # and add it to the the output list
         output.append((f'{self.category_type}').center(30, '*'))
-        total = 0 
-
+        
+        total = 0
+        # Iterate over self.ledger and add each item's description and amount to the output list
         for item in self.ledger:
             # Make sure the first 23 characters of the description will be displayed
             # Slice the first 23 characters, in case the description is too long
@@ -39,25 +41,30 @@ class Category:
             output.append(f"{item['description'][:23]:<23}{item['amount']:>7.2f}")
             total += item['amount']
 
+        # Add the formatted total to the output list
         output.append(f'Total: {total:.2f}')
 
+        # Join all elements of the output list with newline characters and return the result
         return '\n'.join(output)
         
     # Define the class methods
 
+    # Adds a deposit to the ledger
     def deposit(self, amount, description=''):
         self.ledger.append({'amount': amount, 'description': description})
     
+    # If enough funds, withdraws an amount from the ledger
     def withdraw(self, amount, description=''):
         if self.check_funds(amount):
             self.ledger.append({'amount': -amount, 'description': description})
             return True
         return False
 
+    # Returns the current balance by summing all amounts from the ledger
     def get_balance(self):
         return sum(item['amount'] for item in self.ledger)
 
-    # Compute transfer between categories
+    # Computes transfer between categories
     def transfer(self, amount, other_category):
         if self.check_funds(amount):
             self.withdraw(amount, f'Transfer to {other_category.category_type}')
@@ -66,7 +73,7 @@ class Category:
         return False
 
     # Check funds using the get_balance method created above
-    def check_funds(self, amount):  # This method should be used by both the withdraw and transfer methods
+    def check_funds(self, amount):  # This method is used by both the withdraw and transfer methods
         return amount <= self.get_balance()
        
 def create_spend_chart(categories):
@@ -88,13 +95,12 @@ def create_spend_chart(categories):
     # Create a list to store the output lines for the chart
     output_lines = []
 
-    # Store the chart title
+    # Add the chart title to the output_lines list
     output_lines.append('Percentage spent by category')
 
-    # Compute the amount spent by category and the grand total from all categories
-    spent_by_category = []
+    # Compute the total amount spent per category and the grand total from all categories
+    spent_by_category = [] # Create a list to store the total spent by cateogry
     grand_total = 0
-
     for category in categories:
         total_per_category = sum(-item['amount'] for item in category.ledger if item['amount'] < 0)
         spent_by_category.append({'category': category.category_type, 'spent': total_per_category})
@@ -122,12 +128,13 @@ def create_spend_chart(categories):
             else:
                 line_spaces.append(' ')
 
-        lines += (' '*2).join(line_spaces) + (' '*2)
+        lines += (' '*2).join(line_spaces) + (' '*2)   # Use the * operator to specify the number of spaces
         
         # Set the chart width for consistent horizontal alignment     
         chart_width = 5 + len(spent_by_category) * 3
-        output_lines.append(lines.ljust(chart_width))  # Use .ljust() to left-justify, padding it with spaces
+        output_lines.append(lines.ljust(chart_width))  # Left-justify, padding it with spaces
 
+    # Add the horizontal line below the bars
     # Each category column takes up three characters (one space + 'o' + another space)
     # +1 for extra '-' to make the horizontal line below the bars with two spaces past the final bar
     output_lines.append((' '*4) + '-' * (len(spent_by_category) * 3 + 1))
@@ -137,16 +144,16 @@ def create_spend_chart(categories):
 
     # Set up the category names vertically below the bar
     for n in range(max_len):
-        row = (" "*5)        # Initial spacing
+        row = (' '*5)    # Initial spacing
         for category in spent_by_category:
             name = category['category']
             if n < len(name):
                 row += name[n] + (' '*2)
             else:
                 row += (' '*3)
-    
         output_lines.append(row.ljust(chart_width))  
 
+    # Join all elements of the output_lines list with newline characters and return the result
     return '\n'.join(output_lines)
 
 ### Sample Tests
@@ -176,6 +183,9 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
+
+
+
 
 
 
