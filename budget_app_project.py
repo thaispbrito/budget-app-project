@@ -16,7 +16,7 @@ class Category:
         check_funds(amount): Checks if the requested amount is available in the balance.
     """
     
-    # Initialize the object's property with the passed-in value
+    # Initialize the category_type attribute with the passed-in category name
     def __init__(self, category_type):
         self.category_type = category_type
 
@@ -176,5 +176,6 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
+
 
 
