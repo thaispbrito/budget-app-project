@@ -16,7 +16,7 @@ class Category:
         check_funds(amount): Checks if the requested amount is available in the balance.
     """
     
-    # Initialize the properties to the new object self to the passed in value
+    # Initialize the object's property with the passed-in value
     def __init__(self, category_type):
         self.category_type = category_type
 
@@ -27,7 +27,8 @@ class Category:
     def __str__(self):
         output = []
 
-        # Create a title line of 30 characters where the name of the category is centered in a line of * characters
+        # Create a title line of 30 characters where the name of 
+        # the category is centered in a line of '*' characters
         output.append((f'{self.category_type}').center(30, '*'))
         total = 0 
 
@@ -36,7 +37,7 @@ class Category:
             # Slice the first 23 characters, in case the description is too long
             # Right-align the amount with two decimal places and display a max of seven characters
             output.append(f"{item['description'][:23]:<23}{item['amount']:>7.2f}")
-            total += item["amount"]
+            total += item['amount']
 
         output.append(f'Total: {total:.2f}')
 
@@ -47,7 +48,7 @@ class Category:
     def deposit(self, amount, description=''):
         self.ledger.append({'amount': amount, 'description': description})
     
-    def withdraw(self, amount, description=""):
+    def withdraw(self, amount, description=''):
         if self.check_funds(amount):
             self.ledger.append({'amount': -amount, 'description': description})
             return True
@@ -86,6 +87,7 @@ def create_spend_chart(categories):
     
     # Create a list to store the output lines for the chart
     output_lines = []
+    
     # Store the chart title
     output_lines.append('Percentage spent by category')
 
@@ -174,6 +176,4 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
-
-
 
