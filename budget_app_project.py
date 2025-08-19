@@ -23,7 +23,7 @@ class Category:
         # Initialize a list that can be accessed by all methods in this class
         self.ledger = []
 
-    # Define __str__ method to print the output properly
+    # Define the __str__ method to return a properly formatted output
     def __str__(self):
         output = []  # Create a list to store the output elements
 
@@ -183,6 +183,7 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
+
 
 
 
