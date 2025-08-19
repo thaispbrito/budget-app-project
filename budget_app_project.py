@@ -72,10 +72,7 @@ class Category:
     # Check funds using the get_balance method created above
     def check_funds(self, amount):  # This method should be used by both the withdraw and transfer methods
         balance = self.get_balance()
-        if amount > balance:
-            return False
-        else:
-            return True        
+        return amount <= balance    
        
 def create_spend_chart(categories):
     
@@ -149,7 +146,7 @@ def create_spend_chart(categories):
 
     # Set up the category names vertically below the bar
     for n in range(max_len):
-        row = (" "*5)        # Inicial spacing
+        row = (" "*5)        # Initial spacing
         for category in spent_by_category:
             name = category["category"]
             if n < len(name):
@@ -176,3 +173,4 @@ auto.withdraw(15, 'repair')
 chart = create_spend_chart([food, clothing, auto])
 print(food)
 print(chart)
+
