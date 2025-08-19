@@ -140,7 +140,7 @@ def create_spend_chart(categories):
     # Get the longest category name length
     max_len = max(len(category['category']) for category in spent_by_category)
 
-    # Set up the category names vertically below the dashed line
+    # Set up the category names vertically below the horizontal dashed line
     for n in range(max_len):
         row = (' '*5)    # Initial spacing
         for category in spent_by_category:
@@ -181,6 +181,7 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
+
 
 
 
