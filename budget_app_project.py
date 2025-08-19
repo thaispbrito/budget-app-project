@@ -35,7 +35,6 @@ class Category:
         total = 0
         # Iterate over self.ledger and add each item's description and amount to the output list
         for item in self.ledger:
-            # Make sure the first 23 characters of the description will be displayed
             # Slice the first 23 characters, in case the description is too long
             # Right-align the amount with two decimal places and display a max of seven characters
             output.append(f"{item['description'][:23]:<23}{item['amount']:>7.2f}")
@@ -134,7 +133,7 @@ def create_spend_chart(categories):
         chart_width = 5 + len(spent_by_category) * 3
         output_lines.append(lines.ljust(chart_width))  # Left-justify, padding it with spaces
 
-    # Add the horizontal line below the bars to the output_lines list
+    # Add the horizontal dashed line to the output_lines list
     # Each category column takes up three characters (one space + 'o' + another space)
     # +1 for extra '-' to make the horizontal line below the bars with two spaces past the final bar
     output_lines.append((' '*4) + '-' * (len(spent_by_category) * 3 + 1))
@@ -183,6 +182,7 @@ print(food)
 # Generate and print the spending chart
 chart = create_spend_chart([food, clothing, auto])
 print(chart)
+
 
 
 
